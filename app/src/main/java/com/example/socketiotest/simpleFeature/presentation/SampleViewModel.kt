@@ -2,8 +2,8 @@ package com.example.socketiotest.simpleFeature.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.socketiotest.simpleFeature.domain.GetInfoUseCase
-import com.example.socketiotest.simpleFeature.domain.SendInfoUseCase
+import com.example.socketiotest.simpleFeature.domain.usecases.GetInfoUseCase
+import com.example.socketiotest.simpleFeature.domain.usecases.SendInfoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

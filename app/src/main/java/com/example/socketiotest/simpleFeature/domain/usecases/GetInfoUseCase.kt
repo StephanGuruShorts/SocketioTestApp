@@ -1,5 +1,6 @@
-package com.example.socketiotest.simpleFeature.domain
+package com.example.socketiotest.simpleFeature.domain.usecases
 
+import com.example.socketiotest.simpleFeature.domain.SampleRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
