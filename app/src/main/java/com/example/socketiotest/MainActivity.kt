@@ -6,19 +6,22 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.example.socketiotest.aditional.AppLifecycleObserver
+import com.example.socketiotest.simpleFeature.presentation.SampleScreen
 import com.example.socketiotest.ui.theme.SocketIoTestTheme
-import io.socket.client.IO
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject lateinit var appLifecycleObserver: AppLifecycleObserver
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val mSocket = IO.socket("http://10.0.2.2:3000")
-        mSocket.connect()
+        lifecycle.addObserver(appLifecycleObserver)
 
         setContent {
             SocketIoTestTheme {
@@ -27,25 +30,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    SampleFirstScreen(socket = mSocket)
+                    SampleScreen()
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SocketIoTestTheme {
-        Greeting("Android")
     }
 }

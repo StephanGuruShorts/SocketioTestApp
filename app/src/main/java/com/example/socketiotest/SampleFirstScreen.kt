@@ -1,5 +1,6 @@
 package com.example.socketiotest
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -47,6 +48,10 @@ fun SampleFirstScreen(
             listMessages.add(Message("server", "it[0] is Ack = ${it[0] is Ack}"))
             (it[0] as Ack).call("hi server")
             listMessages.add(Message("client", "\"hi server\""))
+        }
+
+        socket.on("info") {
+            Log.d("rawr","info recieved")
         }
     }
 
