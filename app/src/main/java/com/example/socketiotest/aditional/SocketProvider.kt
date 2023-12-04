@@ -31,6 +31,8 @@ class SocketProvider(
     }
 
     private fun initScope() {
+
+        //handle lifecycle connect/disconnect
         coroutineScope.launch {
             appLifecycleObserver.eventState.collect {
                 Log.d("rawr1", "$it")
@@ -63,6 +65,7 @@ class SocketProvider(
             }
         }
 
+        //handle service information
         coroutineScope.launch {
             socket?.let { socket ->
                 socket.on(Socket.EVENT_CONNECT) {
