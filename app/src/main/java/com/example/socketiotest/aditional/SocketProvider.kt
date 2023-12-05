@@ -45,7 +45,9 @@ class SocketProvider(
 
                     Lifecycle.Event.ON_RESUME -> {
                         Log.d("rawr1", "Lifecycle.Event.ON_RESUME")
-                        socket?.connect()
+                        if (socket?.connected() == false) {
+                            socket?.connect()
+                        }
                     }
 
                     Lifecycle.Event.ON_PAUSE -> {
